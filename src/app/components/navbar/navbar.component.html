@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand fw-bold" href="#"
+    <a class="navbar-brand fw-bold d-flex align-items-center" routerLink="home"
       ><img
         src="./assets/logo.png"
         alt="Logo"
@@ -23,57 +23,90 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a
+            class="nav-link"
+            aria-current="page"
+            routerLink="/home"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            >Home</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Cart</a>
+          <a
+            class="nav-link"
+            routerLink="/cart"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            >Cart</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Products</a>
+          <a
+            class="nav-link"
+            routerLink="/products"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            >Products</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Catigories</a>
+          <a
+            class="nav-link"
+            routerLink="/categories"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            >Categories</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Brands</a>
+          <a
+            class="nav-link"
+            routerLink="/brands"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            >Brands</a
+          >
         </li>
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="#"
-            ><i class="fa fa-brands fa-instagram"></i
-          ></a>
+        <li class="nav-item d-flex align-items-center">
+          <fa-icon class="mx-1" [icon]="faInstagram"></fa-icon>
+          <fa-icon class="mx-1" [icon]="faFacebook"></fa-icon>
+          <fa-icon class="mx-1" [icon]="faTiktok"></fa-icon>
+          <fa-icon class="mx-1" [icon]="faTwitter"></fa-icon>
+          <fa-icon class="mx-1" [icon]="faLinkedin"></fa-icon>
+          <fa-icon class="mx-1" [icon]="faYoutube"></fa-icon>
+          <i></i>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"
-            ><i class="fa fa-brands fa-facebook"></i
-          ></a>
+          <a
+            class="nav-link"
+            routerLink="/register"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            >Register</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"
-            ><i class="fa fa-brands fa-tiktok"></i
-          ></a>
+          <a
+            class="nav-link"
+            routerLink="/login"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            >Login</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"
-            ><i class="fa fa-brands fa-twitter"></i
-          ></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"
-            ><i class="fa fa-brands fa-linkedin"></i
-          ></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"
-            ><i class="fa fa-brands fa-youtube"></i
-          ></a>
+          <a
+            class="nav-link"
+            routerLink="/logout"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            >LogOut</a
+          >
         </li>
       </ul>
-      <button class="btn btn-outline-success mx-1" type="submit">Login</button>
-      <button class="btn btn-outline-success mx-1" type="submit">
-        Register
-      </button>
     </div>
   </div>
 </nav>
