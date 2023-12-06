@@ -1,0 +1,61 @@
+<div class="container">
+  <h1 class="my-3">Register Now:</h1>
+  <form action="" [formGroup]="registerForm">
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        formControlName="name"
+        class="form-control"
+        id="name"
+        placeholder="name"
+      />
+      <label for="name">Name</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="email"
+        formControlName="email"
+        class="form-control"
+        id="email"
+        placeholder="name@example.com"
+      />
+      <label for="email">Email address</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="password"
+        formControlName="password"
+        class="form-control"
+        id="password"
+        placeholder="Password"
+      />
+      <label for="password">Password</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="password"
+        formControlName="rePassword"
+        class="form-control"
+        id="rePassword"
+        placeholder="Password Confirmation"
+      />
+      <label for="rePassword">Password Confirmation</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="tel"
+        formControlName="phone"
+        class="form-control"
+        id="phone"
+        placeholder="Phone Number"
+      />
+      <label for="phone">Phone Number</label>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary mb-3 ms-auto d-block bg-main border-0"
+    >
+      Submit
+    </button>
+  </form>
+</div>

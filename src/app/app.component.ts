@@ -8,6 +8,9 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ProductsComponent } from './components/products/products.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { LoginComponent } from './components/auth/login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -24,10 +27,13 @@ import { ProductsComponent } from './components/products/products.component';
     HomeComponent,
     ProductsComponent,
     NotFoundComponent,
+    FooterComponent,
+    RegisterComponent,
+    LoginComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'my-app';
+  title = 'Fresh Cart';
 }
