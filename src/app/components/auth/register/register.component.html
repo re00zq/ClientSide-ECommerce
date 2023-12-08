@@ -1,6 +1,10 @@
 <div class="container">
   <h1 class="my-3">Register Now:</h1>
-  <form action="" [formGroup]="registerForm">
+  <form
+    action=""
+    [formGroup]="registerForm"
+    (submit)="handleRegister(registerForm)"
+  >
     <div class="form-floating mb-3">
       <input
         type="text"
@@ -8,8 +12,26 @@
         class="form-control"
         id="name"
         placeholder="name"
+        [ngClass]="
+          registerForm.controls['name'].errors &&
+          registerForm.controls['name'].touched
+            ? 'is-invalid'
+            : ''
+        "
       />
       <label for="name">Name</label>
+      <p
+        *ngIf="registerForm.controls['name'].errors?.['required'] && registerForm.controls['name'].touched"
+        class="text-danger"
+      >
+        Name is required!
+      </p>
+      <p
+        *ngIf="registerForm.controls['name'].errors?.['maxlength'] && registerForm.controls['name'].touched"
+        class="text-danger"
+      >
+        Name should be less than 30 character
+      </p>
     </div>
     <div class="form-floating mb-3">
       <input
@@ -18,8 +40,26 @@
         class="form-control"
         id="email"
         placeholder="name@example.com"
+        [ngClass]="
+          registerForm.controls['email'].errors &&
+          registerForm.controls['email'].touched
+            ? 'is-invalid'
+            : ''
+        "
       />
       <label for="email">Email address</label>
+      <p
+        *ngIf="registerForm.controls['email'].errors?.['required'] && registerForm.controls['email'].touched"
+        class="text-danger"
+      >
+        Email is required!
+      </p>
+      <p
+        *ngIf="registerForm.controls['email'].errors?.['email'] && registerForm.controls['email'].touched"
+        class="text-danger"
+      >
+        This email is invalid!
+      </p>
     </div>
     <div class="form-floating mb-3">
       <input
@@ -28,8 +68,26 @@
         class="form-control"
         id="password"
         placeholder="Password"
+        [ngClass]="
+          registerForm.controls['password'].errors &&
+          registerForm.controls['password'].touched
+            ? 'is-invalid'
+            : ''
+        "
       />
       <label for="password">Password</label>
+      <p
+        *ngIf="registerForm.controls['password'].errors?.['required'] && registerForm.controls['password'].touched"
+        class="text-danger"
+      >
+        Password is required!
+      </p>
+      <p
+        *ngIf="(registerForm.controls['password'].errors?.['maxlength'] || registerForm.controls['password'].errors?.['minlength'] ) && registerForm.controls['password'].touched"
+        class="text-danger"
+      >
+        Password should be between 8 and 30 character!
+      </p>
     </div>
     <div class="form-floating mb-3">
       <input
@@ -38,8 +96,26 @@
         class="form-control"
         id="rePassword"
         placeholder="Password Confirmation"
+        [ngClass]="
+          registerForm.controls['rePassword'].errors &&
+          registerForm.controls['rePassword'].touched
+            ? 'is-invalid'
+            : ''
+        "
       />
       <label for="rePassword">Password Confirmation</label>
+      <p
+        *ngIf="registerForm.controls['rePassword'].errors?.['required'] && registerForm.controls['rePassword'].touched"
+        class="text-danger"
+      >
+        Password confirmation is required!
+      </p>
+      <p
+        *ngIf="(registerForm.controls['rePassword'].errors?.['maxlength'] || registerForm.controls['rePassword'].errors?.['minlength'] ) && registerForm.controls['rePassword'].touched"
+        class="text-danger"
+      >
+        Password should be between 8 and 30 character!
+      </p>
     </div>
     <div class="form-floating mb-3">
       <input
@@ -48,12 +124,31 @@
         class="form-control"
         id="phone"
         placeholder="Phone Number"
+        [ngClass]="
+          registerForm.controls['phone'].errors &&
+          registerForm.controls['phone'].touched
+            ? 'is-invalid'
+            : ''
+        "
       />
       <label for="phone">Phone Number</label>
+      <p
+        *ngIf="registerForm.controls['phone'].errors?.['required'] && registerForm.controls['phone'].touched"
+        class="text-danger"
+      >
+        Phone Number is required!
+      </p>
+      <p
+        *ngIf="registerForm.controls['phone'].errors?.['pattern'] && registerForm.controls['phone'].touched"
+        class="text-danger"
+      >
+        This phone number is invalid!
+      </p>
     </div>
     <button
       type="submit"
       class="btn btn-primary mb-3 ms-auto d-block bg-main border-0"
+      [attr.disabled]="registerForm.status == 'INVALID' ? true : null"
     >
       Submit
     </button>
