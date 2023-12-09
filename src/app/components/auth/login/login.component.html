@@ -1,1 +1,71 @@
-<p>login works!</p>
+<h1 class="my-3">Login Now:</h1>
+<div *ngIf="apiError" class="alert alert-danger">{{ apiError }}</div>
+<form action="" [formGroup]="loginForm" (submit)="handleLogin(loginForm)">
+  <div class="form-floating mb-3">
+    <input
+      type="email"
+      formControlName="email"
+      class="form-control"
+      id="email"
+      placeholder="name@example.com"
+      [ngClass]="
+        loginForm.controls['email'].errors &&
+        loginForm.controls['email'].touched
+          ? 'is-invalid'
+          : ''
+      "
+    />
+    <label for="email">Email address</label>
+    <p
+      *ngIf="loginForm.controls['email'].errors?.['required'] && loginForm.controls['email'].touched"
+      class="text-danger"
+    >
+      Email is required!
+    </p>
+    <p
+      *ngIf="loginForm.controls['email'].errors?.['email'] && loginForm.controls['email'].touched"
+      class="text-danger"
+    >
+      This email is invalid!
+    </p>
+  </div>
+  <div class="form-floating mb-3">
+    <input
+      type="password"
+      formControlName="password"
+      class="form-control"
+      id="password"
+      placeholder="Password"
+      [ngClass]="
+        loginForm.controls['password'].errors &&
+        loginForm.controls['password'].touched
+          ? 'is-invalid'
+          : ''
+      "
+    />
+    <label for="password">Password</label>
+    <p
+      *ngIf="loginForm.controls['password'].errors?.['required'] && loginForm.controls['password'].touched"
+      class="text-danger"
+    >
+      Password is required!
+    </p>
+    <p
+      *ngIf="(loginForm.controls['password'].errors?.['maxlength'] || loginForm.controls['password'].errors?.['minlength'] ) && loginForm.controls['password'].touched"
+      class="text-danger"
+    >
+      Password should be between 8 and 30 character!
+    </p>
+  </div>
+
+  <button
+    type="submit"
+    class="btn btn-primary mb-3 ms-auto d-block bg-main border-0"
+    [disabled]="loginForm.invalid"
+  >
+    <div *ngIf="isLoading">
+      <fa-icon [icon]="faSpinner" animation="spin"> </fa-icon>
+    </div>
+    <div *ngIf="!isLoading">Login</div>
+  </button>
+</form>
