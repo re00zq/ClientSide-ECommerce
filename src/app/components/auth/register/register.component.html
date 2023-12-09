@@ -1,5 +1,6 @@
 <div class="container">
   <h1 class="my-3">Register Now:</h1>
+  <div *ngIf="apiError" class="alert alert-danger">{{ apiError }}</div>
   <form
     action=""
     [formGroup]="registerForm"
@@ -114,7 +115,7 @@
         *ngIf="(registerForm.controls['rePassword'].errors?.['maxlength'] || registerForm.controls['rePassword'].errors?.['minlength'] ) && registerForm.controls['rePassword'].touched"
         class="text-danger"
       >
-        Password should be between 8 and 30 character!
+        Password confirmation should be between 8 and 30 character!
       </p>
     </div>
     <div class="form-floating mb-3">
@@ -148,9 +149,12 @@
     <button
       type="submit"
       class="btn btn-primary mb-3 ms-auto d-block bg-main border-0"
-      [attr.disabled]="registerForm.status == 'INVALID' ? true : null"
+      [disabled]="registerForm.invalid"
     >
-      Submit
+      <div *ngIf="isLoading">
+        <fa-icon [icon]="faSpinner" animation="spin"> </fa-icon>
+      </div>
+      <div *ngIf="!isLoading">Register</div>
     </button>
   </form>
 </div>
