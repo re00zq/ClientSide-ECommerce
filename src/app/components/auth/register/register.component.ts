@@ -8,6 +8,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 import { RegisterService } from '../../../services/auth/register.service';
 @Component({
@@ -21,7 +22,10 @@ export class RegisterComponent {
   isLoading: boolean;
   apiError: string;
   faSpinner = faSpinner;
-  constructor(private registerService: RegisterService) {
+  constructor(
+    private registerService: RegisterService,
+    private router: Router
+  ) {
     this.isLoading = false;
     this.apiError = '';
   }
@@ -51,6 +55,11 @@ export class RegisterComponent {
       next: (res) => {
         this.apiError = '';
         this.isLoading = false;
+        localStorage.setItem(
+          'currentUser',
+          JSON.stringify({ token: res.token, user: res.user })
+        );
+        this.router.navigate(['/', 'home']);
       },
       complete: () => {
         console.log('complete');

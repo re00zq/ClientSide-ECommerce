@@ -8,6 +8,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 import { LoginService } from '../../../services/auth/login.service';
 @Component({
@@ -21,7 +22,7 @@ export class LoginComponent {
   isLoading: boolean;
   apiError: string;
   faSpinner = faSpinner;
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, private router: Router) {
     this.isLoading = false;
     this.apiError = '';
   }
@@ -39,9 +40,13 @@ export class LoginComponent {
     this.isLoading = true;
     this.loginService.login(form.value).subscribe({
       next: (res) => {
-        console.log(res);
         this.apiError = '';
         this.isLoading = false;
+        localStorage.setItem(
+          'currentUser',
+          JSON.stringify({ token: res.token, user: res.user })
+        );
+        this.router.navigate(['/', 'home']);
       },
       complete: () => {
         console.log('complete');
