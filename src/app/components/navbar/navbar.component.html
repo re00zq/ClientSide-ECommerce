@@ -97,6 +97,11 @@
             >Login</a
           >
         </li>
+        <li *ngIf="userData" class="nav-item">
+          <span class="nav-link cursor-pointer" ariaCurrentWhenActive="page">{{
+            userData.name.split(" ")[0]
+          }}</span>
+        </li>
         <li *ngIf="isLoged" class="nav-item">
           <span
             (click)="logout()"

@@ -11,6 +11,7 @@ import {
   faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
 import { LogoutService } from '../../services/auth/logout.service';
+import { UserDataService } from '../../services/auth/user-data.service';
 
 @Component({
   selector: 'app-navbar',
@@ -35,16 +36,23 @@ export class NavbarComponent implements OnInit {
   faLinkedin = faLinkedin;
 
   isLoged: boolean;
-  constructor(private logoutService: LogoutService) {
+  userData: { name: string; email: string; role: string } | null;
+  constructor(
+    private logoutService: LogoutService,
+    private userDataService: UserDataService
+  ) {
     this.isLoged = false;
+    this.userData = null;
+  }
+
+  ngOnInit(): void {
+    this.userDataService.getUserData().subscribe((userData: string | null) => {
+      this.userData = userData ? JSON.parse(userData).user : null;
+      this.isLoged = userData ? true : false;
+    });
   }
 
   logout() {
     this.logoutService.logout();
-  }
-
-  ngOnInit(): void {
-    if (localStorage.getItem('currentUser')) this.isLoged = true;
-    if (!localStorage.getItem('currentUser')) this.isLoged = false;
   }
 }

@@ -11,6 +11,9 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 
 import { RegisterService } from '../../../services/auth/register.service';
+import { UserDataService } from '../../../services/auth/user-data.service';
+import { LocalStorageService } from '../../../services/local-storage.service';
+
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -24,7 +27,9 @@ export class RegisterComponent {
   faSpinner = faSpinner;
   constructor(
     private registerService: RegisterService,
-    private router: Router
+    private router: Router,
+    private userDataService: UserDataService,
+    private localStorage: LocalStorageService
   ) {
     this.isLoading = false;
     this.apiError = '';
@@ -55,15 +60,14 @@ export class RegisterComponent {
       next: (res) => {
         this.apiError = '';
         this.isLoading = false;
-        localStorage.setItem(
+        this.localStorage.setItem(
           'currentUser',
           JSON.stringify({ token: res.token, user: res.user })
         );
         this.router.navigate(['/', 'home']);
-      },
-      complete: () => {
-        console.log('complete');
-        this.isLoading = false;
+        this.userDataService.updateUserData(
+          this.localStorage.getItem('currentUser')
+        );
       },
       error: (error) => {
         this.isLoading = false;
