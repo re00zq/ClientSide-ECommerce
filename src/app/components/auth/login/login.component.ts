@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 
 import { LoginService } from '../../../services/auth/login.service';
 import { UserDataService } from '../../../services/auth/user-data.service';
-import { LocalStorageService } from '../../../services/local-storage.service';
+import { LocalStorageService } from '../../../services/local-storage/local-storage.service';
 @Component({
   selector: 'app-login',
   standalone: true,
