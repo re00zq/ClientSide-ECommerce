@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {
+  FontAwesomeModule,
+  FaIconLibrary,
+} from '@fortawesome/angular-fontawesome';
 import {
   faFacebook,
   faInstagram,
@@ -27,22 +30,25 @@ import { UserDataService } from '../../services/auth/user-data.service';
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent implements OnInit {
-  // social media icons
-  faFacebook = faFacebook;
-  faYoutube = faYoutube;
-  faInstagram = faInstagram;
-  faTiktok = faTiktok;
-  faTwitter = faTwitter;
-  faLinkedin = faLinkedin;
-
   isLoged: boolean;
   userData: { name: string; email: string; role: string } | null;
+
   constructor(
     private logoutService: LogoutService,
-    private userDataService: UserDataService
+    private userDataService: UserDataService,
+    library: FaIconLibrary
   ) {
     this.isLoged = false;
     this.userData = null;
+
+    library.addIcons(
+      faFacebook,
+      faInstagram,
+      faTwitter,
+      faLinkedin,
+      faTiktok,
+      faYoutube
+    );
   }
 
   ngOnInit(): void {

@@ -71,13 +71,12 @@
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item d-flex align-items-center">
-          <fa-icon class="mx-1" [icon]="faInstagram"></fa-icon>
-          <fa-icon class="mx-1" [icon]="faFacebook"></fa-icon>
-          <fa-icon class="mx-1" [icon]="faTiktok"></fa-icon>
-          <fa-icon class="mx-1" [icon]="faTwitter"></fa-icon>
-          <fa-icon class="mx-1" [icon]="faLinkedin"></fa-icon>
-          <fa-icon class="mx-1" [icon]="faYoutube"></fa-icon>
-          <i></i>
+          <fa-icon class="mx-1" [icon]="['fab', 'instagram']"></fa-icon>
+          <fa-icon class="mx-1" [icon]="['fab', 'facebook']"></fa-icon>
+          <fa-icon class="mx-1" [icon]="['fab', 'tiktok']"></fa-icon>
+          <fa-icon class="mx-1" [icon]="['fab', 'twitter']"></fa-icon>
+          <fa-icon class="mx-1" [icon]="['fab', 'linkedin']"></fa-icon>
+          <fa-icon class="mx-1" [icon]="['fab', 'youtube']"></fa-icon>
         </li>
         <li *ngIf="!isLoged" class="nav-item">
           <a

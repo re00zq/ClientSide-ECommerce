@@ -1,6 +1,13 @@
 import { Component } from '@angular/core';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {
+  faStar as farStar,
+  faStarHalfStroke as faHalf,
+} from '@fortawesome/free-regular-svg-icons';
+import { faStar as fasStar } from '@fortawesome/free-solid-svg-icons';
+import {
+  FontAwesomeModule,
+  FaIconLibrary,
+} from '@fortawesome/angular-fontawesome';
 import { CommonModule } from '@angular/common';
 
 import { Product } from '../../types/product.type';
@@ -16,9 +23,9 @@ import { ProductsService } from '../../services/products/products.service';
 export class ProductsComponent {
   products: Product[];
 
-  faStar = faStar;
-  constructor(private productService: ProductsService) {
+  constructor(private productService: ProductsService, library: FaIconLibrary) {
     this.products = [];
+    library.addIcons(fasStar, farStar, faHalf);
   }
 
   ngOnInit(): void {
