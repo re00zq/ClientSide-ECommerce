@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-import { Product } from '../../types/product.type';
-import serverConstants from '../../constants/serverConstants';
 import { Observable } from 'rxjs';
+
+import serverConstants from '../../constants/serverConstants';
 
 @Injectable({
   providedIn: 'root',
@@ -13,5 +12,9 @@ export class ProductsService {
 
   getAllProducts(): Observable<any> {
     return this.httpClient.get(`${serverConstants.baseUrl}/products`);
+  }
+
+  getProductDetails(id: string | null): Observable<any> {
+    return this.httpClient.get(`${serverConstants.baseUrl}/products/${id}`);
   }
 }

@@ -32,7 +32,6 @@ a:hover {
   transition: transform 0.5s, opacity 1s;
   transform: translateY(100%);
   opacity: 0;
-  color: var(--light-color);
 }
 .product:hover .btn {
   opacity: 1;
@@ -51,5 +50,5 @@ a:hover {
   background-color: var(--light-color) !important;
 }
 .text-main-light {
-  color: var(--light-color);
+  color: var(--light-color) !important ;
 }

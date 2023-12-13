@@ -1,0 +1,30 @@
+<div class="row align-items-center">
+  <div class="col-4">
+    <img class="w-100" [src]="product.imageCover" [alt]="product.title" />
+  </div>
+  <div class="col-8">
+    <h2 class="fw-bold">{{ product.title }}</h2>
+    <p class="text-muted">{{ product.description }}</p>
+    <p class="text-main fw-bolder">{{ product.category.name }}</p>
+    <p class="">{{ product.price }} EGY</p>
+    <div class="mb-2">
+      <span class="">{{ product.ratingsAverage }} </span>
+      <fa-icon
+        class="rating-color"
+        *ngFor="let i of [].constructor(getStars(product.ratingsAverage).solid)"
+        [icon]="['fas', 'star']"
+      ></fa-icon>
+      <fa-icon
+        class="rating-color"
+        *ngIf="getStars(product.ratingsAverage).half"
+        [icon]="['far', 'star-half-stroke']"
+      ></fa-icon>
+      <fa-icon
+        class="rating-color"
+        *ngFor="let i of [].constructor(getStars(product.ratingsAverage).empty)"
+        [icon]="['far', 'star']"
+      ></fa-icon>
+    </div>
+    <button class="btn bg-main w-100 text-main-light">+ Add</button>
+  </div>
+</div>

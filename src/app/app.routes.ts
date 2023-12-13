@@ -8,11 +8,17 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { authGuard } from './guards/auth.guard';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'products', component: ProductsComponent, canActivate: [authGuard] },
+  {
+    path: 'products/:id',
+    component: ProductDetailsComponent,
+    canActivate: [authGuard],
+  },
   {
     path: 'categories',
     component: CategoriesComponent,

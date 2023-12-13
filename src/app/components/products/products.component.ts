@@ -12,19 +12,24 @@ import { CommonModule } from '@angular/common';
 
 import { Product } from '../../types/product.type';
 import { ProductsService } from '../../services/products/products.service';
+import { RouterModule } from '@angular/router';
+import { GetDynamicStarsService } from '../../services/Rating/get-dynamic-stars.service';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule],
+  imports: [FontAwesomeModule, CommonModule, RouterModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
 export class ProductsComponent {
-  products: Product[];
+  products!: Product[];
 
-  constructor(private productService: ProductsService, library: FaIconLibrary) {
-    this.products = [];
+  constructor(
+    private productService: ProductsService,
+    library: FaIconLibrary,
+    private getstarsService: GetDynamicStarsService
+  ) {
     library.addIcons(fasStar, farStar, faHalf);
   }
 
@@ -34,19 +39,7 @@ export class ProductsComponent {
       .subscribe((res) => (this.products = res.data));
   }
 
-  getStars(averageRating: number): {
-    solid: number;
-    half: boolean;
-    empty: number;
-  } {
-    const solid = Math.floor(averageRating);
-    const half = Math.round(averageRating) - solid ? true : false;
-    const empty = 5 - Math.round(averageRating);
-
-    return {
-      solid,
-      half,
-      empty,
-    };
+  getStars(averageRating: number) {
+    return this.getstarsService.getDynamicStars(averageRating);
   }
 }

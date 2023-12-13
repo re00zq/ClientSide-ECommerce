@@ -3,46 +3,48 @@
     *ngFor="let product of products"
     class="col-6 col-sm-4 col-lg-3 col-xl-2"
   >
-    <div class="card product w-100 my-3">
-      <img
-        [src]="product.imageCover"
-        class="card-img-top"
-        [alt]="product.title"
-      />
-      <div class="card-body">
-        <h3 class="card-title h6 text-main fw-bolder">
-          {{ product.category.name }}
-        </h3>
-        <p class="card-text fw-bolder text-sm">
-          {{ product.title.split(" ").slice(0, 2).join(" ") }}
-        </p>
+    <a [routerLink]="['/products', product._id]">
+      <div class="card product w-100 my-3">
+        <img
+          [src]="product.imageCover"
+          class="card-img-top"
+          [alt]="product.title"
+        />
+        <div class="card-body">
+          <h3 class="card-title h6 text-main fw-bolder">
+            {{ product.category.name }}
+          </h3>
+          <p class="card-text fw-bolder text-sm">
+            {{ product.title.split(" ").slice(0, 2).join(" ") }}
+          </p>
 
-        <p class="text-sm">{{ product.price }} EGY</p>
+          <p class="text-sm">{{ product.price }} EGY</p>
 
-        <div class="my-1">
-          <span class="text-sm mx-1">{{ product.ratingsAverage }}</span>
-          <fa-icon
-            class="rating-color"
-            *ngFor="
-              let i of [].constructor(getStars(product.ratingsAverage).solid)
-            "
-            [icon]="['fas', 'star']"
-          ></fa-icon>
-          <fa-icon
-            class="rating-color"
-            *ngIf="getStars(product.ratingsAverage).half"
-            [icon]="['far', 'star-half-stroke']"
-          ></fa-icon>
-          <fa-icon
-            class="rating-color"
-            *ngFor="
-              let i of [].constructor(getStars(product.ratingsAverage).empty)
-            "
-            [icon]="['far', 'star']"
-          ></fa-icon>
+          <div class="my-1">
+            <span class="text-sm mx-1">{{ product.ratingsAverage }}</span>
+            <fa-icon
+              class="rating-color"
+              *ngFor="
+                let i of [].constructor(getStars(product.ratingsAverage).solid)
+              "
+              [icon]="['fas', 'star']"
+            ></fa-icon>
+            <fa-icon
+              class="rating-color"
+              *ngIf="getStars(product.ratingsAverage).half"
+              [icon]="['far', 'star-half-stroke']"
+            ></fa-icon>
+            <fa-icon
+              class="rating-color"
+              *ngFor="
+                let i of [].constructor(getStars(product.ratingsAverage).empty)
+              "
+              [icon]="['far', 'star']"
+            ></fa-icon>
+          </div>
+          <button class="btn bg-main w-100 text-main-light">+ Add</button>
         </div>
-        <button class="btn bg-main w-100">+ Add</button>
       </div>
-    </div>
+    </a>
   </div>
 </div>
