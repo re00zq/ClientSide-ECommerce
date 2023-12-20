@@ -1,4 +1,8 @@
-<table class="table">
+<div class="d-flex justify-content-between border-bottom mb-5">
+  <h2 class="fw-bold mb-4">Shoping Cart</h2>
+  <h2 class="fw-bold mb-4">{{ cart.totalCartPrice }} EGY</h2>
+</div>
+<table class="table table-borderless">
   <thead>
     <tr>
       <th scope="col" class="text-uppercase text-muted">product details</th>
@@ -22,7 +26,10 @@
             {{ product.product.category.name }}
           </li>
           <li class="text-muted">
-            <button class="btn p-0">
+            <button
+              (click)="removeProduct(product.product._id)"
+              class="btn p-0"
+            >
               <fa-icon class="text-danger" [icon]="faTrash"></fa-icon>
             </button>
           </li>

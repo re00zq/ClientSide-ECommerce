@@ -29,4 +29,15 @@ export class CartComponent implements OnInit {
       },
     });
   }
+
+  removeProduct(productId: string) {
+    this.cartService.removeProduct(productId).subscribe({
+      next: (response) => {
+        this.cart = response.data;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
 }

@@ -14,6 +14,7 @@ import { Product } from '../../types/product.type';
 import { ProductsService } from '../../services/products/products.service';
 import { RouterModule } from '@angular/router';
 import { GetDynamicStarsService } from '../../services/Rating/get-dynamic-stars.service';
+import { CartService } from '../../services/Cart/cart.service';
 
 @Component({
   selector: 'app-products',
@@ -28,7 +29,8 @@ export class ProductsComponent {
   constructor(
     private productService: ProductsService,
     library: FaIconLibrary,
-    private getstarsService: GetDynamicStarsService
+    private getstarsService: GetDynamicStarsService,
+    private cartService: CartService
   ) {
     library.addIcons(fasStar, farStar, faHalf);
   }
@@ -37,6 +39,17 @@ export class ProductsComponent {
     this.productService
       .getAllProducts()
       .subscribe((response) => (this.products = response.data));
+  }
+
+  addToCart(productId: string): void {
+    this.cartService.addToCart(productId).subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 
   getStars(averageRating: number) {

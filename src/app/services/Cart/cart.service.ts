@@ -33,4 +33,10 @@ export class CartService {
   getCart(): Observable<any> {
     return this.httpClient.get(this.url, { headers: { token: this.token } });
   }
+
+  removeProduct(productId: string): Observable<any> {
+    return this.httpClient.delete(`${this.url}/${productId}`, {
+      headers: { token: this.token },
+    });
+  }
 }
