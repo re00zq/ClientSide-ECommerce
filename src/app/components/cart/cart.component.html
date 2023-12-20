@@ -1,1 +1,36 @@
-<p>cart works!</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" class="text-uppercase text-muted">product details</th>
+      <th scope="col" class="text-uppercase text-muted">quantity</th>
+      <th scope="col" class="text-uppercase text-muted">price</th>
+      <th scope="col" class="text-uppercase text-muted">total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of cart?.products">
+      <th class="d-flex align-items-center">
+        <img
+          width="100"
+          [src]="product.product.imageCover"
+          [alt]="product.product.title"
+          class=""
+        />
+        <ul class="mx-2 d-inline-block list-unstyled">
+          <li class="fw-bolder">{{ product.product.title }}</li>
+          <li class="fw-bolder text-main">
+            {{ product.product.category.name }}
+          </li>
+          <li class="text-muted">
+            <button class="btn p-0">
+              <fa-icon class="text-danger" [icon]="faTrash"></fa-icon>
+            </button>
+          </li>
+        </ul>
+      </th>
+      <td class="align-middle">{{ product.count }}</td>
+      <td class="align-middle">{{ product.price }} EGY</td>
+      <td class="align-middle">{{ product.price * product.count }} EGY</td>
+    </tr>
+  </tbody>
+</table>

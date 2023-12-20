@@ -25,6 +25,11 @@
         [icon]="['far', 'star']"
       ></fa-icon>
     </div>
-    <button class="btn bg-main w-100 text-main-light">+ Add</button>
+    <button
+      (click)="addToCart(product._id)"
+      class="btn bg-main w-100 text-main-light"
+    >
+      + Add
+    </button>
   </div>
 </div>

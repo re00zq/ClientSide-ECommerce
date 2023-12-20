@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from '../../services/products/products.service';
 import { ActivatedRoute } from '@angular/router';
-import { Product } from '../../types/product.type';
 import {
   faStar as farStar,
   faStarHalfStroke as faHalf,
@@ -12,7 +10,11 @@ import {
   FaIconLibrary,
 } from '@fortawesome/angular-fontawesome';
 import { CommonModule } from '@angular/common';
+
+import { ProductsService } from '../../services/products/products.service';
+import { Product } from '../../types/product.type';
 import { GetDynamicStarsService } from '../../services/Rating/get-dynamic-stars.service';
+import { CartService } from '../../services/Cart/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -28,7 +30,8 @@ export class ProductDetailsComponent implements OnInit {
     private productsService: ProductsService,
     private activatedRoute: ActivatedRoute,
     library: FaIconLibrary,
-    private getstarsService: GetDynamicStarsService
+    private getstarsService: GetDynamicStarsService,
+    private cartService: CartService
   ) {
     library.addIcons(fasStar, farStar, faHalf);
   }
@@ -44,6 +47,17 @@ export class ProductDetailsComponent implements OnInit {
         this.product = response.data;
         console.log(this.product);
       });
+  }
+
+  addToCart(productId: string): void {
+    this.cartService.addToCart(productId).subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 
   getStars(averageRating: number) {

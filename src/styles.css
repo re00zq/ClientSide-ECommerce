@@ -52,3 +52,7 @@ a:hover {
 .text-main-light {
   color: var(--light-color) !important ;
 }
+
+.th {
+  text-transform: uppercase;
+}

@@ -36,7 +36,7 @@ export class ProductsComponent {
   ngOnInit(): void {
     this.productService
       .getAllProducts()
-      .subscribe((res) => (this.products = res.data));
+      .subscribe((response) => (this.products = response.data));
   }
 
   getStars(averageRating: number) {
