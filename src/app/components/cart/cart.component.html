@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-between border-bottom mb-5">
-  <h2 class="fw-bold mb-4">Shoping Cart</h2>
-  <h2 class="fw-bold mb-4">{{ cart.totalCartPrice }} EGY</h2>
+  <h2 class="mb-4">Shoping Cart</h2>
+  <h2 class="mb-4">{{ cartItems }} items</h2>
 </div>
 <table class="table table-borderless">
   <thead>
@@ -35,7 +35,25 @@
           </li>
         </ul>
       </th>
-      <td class="align-middle">{{ product.count }}</td>
+      <td class="align-middle">
+        <button
+          (click)="
+            updateProductQuantity(product.product._id, product.count - 1)
+          "
+          class="btn"
+        >
+          <fa-icon [icon]="faMinus"></fa-icon>
+        </button>
+        <span class="border-main p-2">{{ product.count }}</span>
+        <button
+          (click)="
+            updateProductQuantity(product.product._id, product.count + 1)
+          "
+          class="btn"
+        >
+          <fa-icon [icon]="faPlus"></fa-icon>
+        </button>
+      </td>
       <td class="align-middle">{{ product.price }} EGY</td>
       <td class="align-middle">{{ product.price * product.count }} EGY</td>
     </tr>

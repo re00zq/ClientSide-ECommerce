@@ -39,4 +39,14 @@ export class CartService {
       headers: { token: this.token },
     });
   }
+
+  updateProductQuantity(productId: string, count: number): Observable<any> {
+    return this.httpClient.put(
+      `${this.url}/${productId}`,
+      {count},
+      {
+        headers: { token: this.token },
+      }
+    );
+  }
 }
